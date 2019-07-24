@@ -1,0 +1,17 @@
+{
+    "name": "chenxi2015/dingtalk-service",
+    "description": "a dingtalk api service package",
+    "license": "Apache Licence 2.0",
+    "authors": [
+        {
+            "name": "chenxi",
+            "email": "bbxycx.18@163.com"
+        }
+    ],
+    "require": {
+        "guzzlehttp/guzzle": "^6.3"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^8.2"
+    }
+}
