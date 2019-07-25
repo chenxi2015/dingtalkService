@@ -62,7 +62,7 @@ class User extends Base
                 'department'    => isset($data['department']) ? $data['department'] : '',
                 'position'      => isset($data['position']) ? $data['department'] : '',
                 'mobile'        => isset($data['mobile']) ? $data['mobile'] : '',
-                'tel'           => isset($data['tel']) ? $data['mobile'] : '',
+                'tel'           => isset($data['tel']) ? $data['tel'] : '',
                 'workPlace'     => isset($data['workPlace']) ? $data['workPlace'] : '',
                 'remark'        => isset($data['remark']) ? $data['remark'] : '',
                 'email'         => isset($data['email']) ? $data['email'] : '',
