@@ -42,7 +42,7 @@ class Router
     const GET_DEPART_USER_PARENTID_URL =            'department/list_parent_depts'; // 查询指定用户的所有上级父部门路径
 
     // 角色管理
-    const GET_ROLE_LISR_URL =                       'topapi/role/list'; // 获取角色列表
+    const GET_ROLE_LIST_URL =                       'topapi/role/list'; // 获取角色列表
     const GET_ROLE_SIMPLE_LIST_URL =                'topapi/role/simplelist'; // 获取角色下的员工列表
     const GET_ROLE_GROUP_URL =                      'topapi/role/getrolegroup'; // 获取角色组
     const GET_ROLE_INFO_URL =                       'topapi/role/getrole'; // 获取角色详情
