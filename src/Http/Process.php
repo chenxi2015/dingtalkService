@@ -1,6 +1,6 @@
 <?php
 /**
- * 审批
+ * 审批代办
  */
 
 namespace Gxheart\Http;
@@ -9,7 +9,7 @@ namespace Gxheart\Http;
 use GuzzleHttp\Exception\ClientException;
 use Gxheart\Router;
 
-class Approval extends Base
+class Process extends Base
 {
     /**
      * 发起审批
@@ -137,6 +137,13 @@ class Approval extends Base
         }
     }
 
+    /**
+     * 获取审批钉盘空间信息
+     * @param $accessToken
+     * @param $userId
+     * @return array|false|\Psr\Http\Message\StreamInterface|string
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
     public function getProcessCspaceInfo($accessToken, $userId)
     {
         try {
@@ -150,4 +157,85 @@ class Approval extends Base
             return $this->errorResponse($e);
         }
     }
+
+    /**
+     * 创建或更新待办模板
+     * @param $accessToken
+     * @param $data
+     * @return array|false|\Psr\Http\Message\StreamInterface|string
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function saveProcessTemp($accessToken, $data)
+    {
+        try {
+            $this->options['form_params'] = [
+                'saveProcessRequest' => [
+                    'agentid'               => isset($data['agentid']) ? $data['agentid'] : '',
+                    'process_code'          => isset($data['process_code']) ? $data['process_code'] : '',
+                    'name'                  => $data['name'],
+                    'description'           => $data['description'],
+                    'form_component_list'   => $data['form_component_list'],
+                    'fake_mode'             => $data['fake_mode'],
+                ]
+            ];
+            $response = $this->client->request('POST', Router::SAVE_PROCESS_URL . '?access_token=' . $accessToken, $this->options);
+            return $response->getBody();
+
+        } catch (ClientException $e) {
+            return $this->errorResponse($e);
+        }
+    }
+
+    /**
+     * 删除待办模板
+     * @param $accessToken
+     * @param $data
+     * @return array|false|\Psr\Http\Message\StreamInterface|string
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function deleteProcessTemp($accessToken, $data)
+    {
+        try {
+            $this->options['form_params'] = [
+                'request' => [
+                    'agentid' => isset($data['agentid']) ? $data['agentid'] : '',
+                    'process_code' => $data['process_code']
+                ]
+            ];
+            $response = $this->client->request('POST', Router::DELETE_PROCESS_URL . '?access_token=' . $accessToken, $this->options);
+            return $response->getBody();
+
+        } catch (ClientException $e) {
+            return $this->errorResponse($e);
+        }
+    }
+
+    /**
+     * 创建待办实例
+     * @param $accessToken
+     * @param $data
+     * @return array|false|\Psr\Http\Message\StreamInterface|string
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function createUpcomingProcessIns($accessToken, $data)
+    {
+        try {
+            $this->options['form_params'] = [
+                'request' => [
+                    'agentid'               => isset($data['agentid']) ? $data['agentid'] : '',
+                    'process_code'          => $data['process_code'],
+                    'originator_user_id'    => $data['originator_user_id'],
+                    'title'                 => isset($data['title']) ? $data['title'] : '',
+                    'form_component_values' => $data['form_component_values'],
+                    'url'                   => $data['url']
+                ]
+            ];
+            $response = $this->client->request('POST', Router::CREATE_PROCESS_URL . '?access_token=' . $accessToken, $this->options);
+            return $response->getBody();
+
+        } catch (ClientException $e) {
+            return $this->errorResponse($e);
+        }
+    }
+
 }
