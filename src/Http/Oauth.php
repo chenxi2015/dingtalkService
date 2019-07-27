@@ -1,4 +1,7 @@
 <?php
+/**
+ * 身份验证
+ */
 
 namespace Gxheart\Http;
 

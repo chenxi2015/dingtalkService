@@ -1,4 +1,7 @@
 <?php
+/**
+ * 获取access token
+ */
 
 namespace Gxheart\Http;
 

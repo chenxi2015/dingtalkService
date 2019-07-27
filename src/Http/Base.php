@@ -1,4 +1,7 @@
 <?php
+/**
+ * 基类
+ */
 
 namespace Gxheart\Http;
 
@@ -24,7 +27,7 @@ class Base
      */
     public $options = [
         'headers' => [
-            'Accept' => 'application/json'
+            'Content-Type' => 'application/json'
         ],
     ];
 

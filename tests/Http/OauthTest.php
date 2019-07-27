@@ -20,7 +20,7 @@ class OauthTest extends TestCase
     public function testCreateAuthorizeLoginUrl()
     {
         $response = $this->oauth->createAuthorizeLoginUrl('dingoaxa4fumrexmgc8os8', 'http://www.yuanjudongli.com/callback');
-        $this->assertStringContainsString('https://oapi.dingtalk.com/oauth2/sns_authorize', $response);
+        $this->assertStringContainsString('https://oapi.dingtalk.com/connect/oauth2/sns_authorize', $response);
     }
 
     public function testCreateQrCodeLoginUrl()

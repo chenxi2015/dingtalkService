@@ -31,6 +31,7 @@ class AccessTokenTest extends TestCase
     public function testGetAccessToken()
     {
         $response = $this->accessToken->getAccessToken('dingvintpvmfu8rrelcp', 'VebpA9AyFMYid1uynI_KZ8PISpUa1Dz_lLMNuliAc68ijpxVlXT-0FCO2i9T8pPc');
+        // echo $response;
         $this->assertJson($response);
     }
 
