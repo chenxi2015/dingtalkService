@@ -238,4 +238,112 @@ class Process extends Base
         }
     }
 
+    /**
+     * 创建待办任务
+     * @param $accessToken
+     * @param $data
+     * @return array|false|\Psr\Http\Message\StreamInterface|string
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function updateProcessIns($accessToken, $data)
+    {
+        try {
+            $this->options['form_params'] = [
+                'request' => [
+                    'agentid'               => isset($data['agentid']) ? $data['agentid'] : '',
+                    'process_instance_id'   => $data['process_instance_id'],
+                    'status'                => $data['status'],
+                    'result'                => isset($data['result']) ? $data['result'] : ''
+                ]
+            ];
+            $response = $this->client->request('POST', Router::UPDATE_PROCESSINC_STATUS_URL . '?access_token=' . $accessToken, $this->options);
+            return $response->getBody();
+
+        } catch (ClientException $e) {
+            return $this->errorResponse($e);
+        }
+    }
+
+    /**
+     * 创建待办任务
+     * @param $accessToken
+     * @param $data
+     * @return array|false|\Psr\Http\Message\StreamInterface|string
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function createWaitingProcessTask($accessToken, $data)
+    {
+        try {
+            $this->options['form_params'] = [
+                'request' => [
+                    'agentid'               => isset($data['agentid']) ? $data['agentid'] : '',
+                    'process_instance_id'   => $data['process_instance_id'],
+                    'activity_id'           => isset($data['activity_id']) ? $data['activity_id'] : '',
+                    'tasks'                 => $data['tasks'],
+                    'userid'                => $data['userid'],
+                    'url'                   => $data['url'],
+                ]
+            ];
+            $response = $this->client->request('POST', Router::CREATE_PROCESS_TASK_URL . '?access_token=' . $accessToken, $this->options);
+            return $response->getBody();
+
+        } catch (ClientException $e) {
+            return $this->errorResponse($e);
+        }
+    }
+
+    /**
+     * 更新任务状态
+     * @param $accessToken
+     * @param $data
+     * @return array|false|\Psr\Http\Message\StreamInterface|string
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function updateTaskStatus($accessToken, $data)
+    {
+        try {
+            $this->options['form_params'] = [
+                'request' => [
+                    'agentid'               => isset($data['agentid']) ? $data['agentid'] : '',
+                    'process_instance_id'   => $data['process_instance_id'],
+                    'tasks'                 => $data['tasks'],
+                    'task_id'               => $data['task_id'],
+                    'status'                => $data['status'],
+                    'result'                => isset($data['result']) ? $data['result'] : '',
+                ]
+            ];
+            $response = $this->client->request('POST', Router::UPDATE_TASK_STATUS_URL . '?access_token=' . $accessToken, $this->options);
+            return $response->getBody();
+
+        } catch (ClientException $e) {
+            return $this->errorResponse($e);
+        }
+    }
+
+    /**
+     * 批量取消任务
+     * @param $accessToken
+     * @param $data
+     * @return array|false|\Psr\Http\Message\StreamInterface|string
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function cancelMultiTask($accessToken, $data)
+    {
+        try {
+            $this->options['form_params'] = [
+                'request' => [
+                    'agentid'               => isset($data['agentid']) ? $data['agentid'] : '',
+                    'process_instance_id'   => $data['process_instance_id'],
+                    'activity_id'           => $data['activity_id'],
+                ]
+            ];
+            $response = $this->client->request('POST', Router::CANCEL_PROCESS_MULTI_URL . '?access_token=' . $accessToken, $this->options);
+            return $response->getBody();
+
+        } catch (ClientException $e) {
+            return $this->errorResponse($e);
+        }
+    }
+
+
 }

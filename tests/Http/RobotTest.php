@@ -17,6 +17,10 @@ class RobotTest extends TestCase
         $this->robot = new Robot();
     }
 
+    public function testCanSendTextRobotMsg()
+    {
+        $this->assertJson("{}");
+    }
     // public function testCanSendTextRobotMsg()
     // {
     //     $response = $this->robot->sendRobotMsg('2bb33a71b83c62d5eabfb1767fd6462a94d4f42f88d5c23b7b463a8f9be96b07', [
