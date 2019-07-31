@@ -21,8 +21,8 @@ class Department extends Base
     {
         try {
             $this->options['form_params'] = [
-                'name'              => isset($data['name']) ? $data['name'] : '',
-                'parentid'          => isset($data['parentid']) ? $data['parentid'] : '',
+                'name'              => $data['name'],
+                'parentid'          => $data['parentid'],
                 'order'             => isset($data['order']) ? $data['order'] : '',
                 'createDeptGroup'   => isset($data['createDeptGroup']) ? $data['createDeptGroup'] : '',
                 'deptHiding'        => isset($data['deptHiding']) ? $data['deptHiding'] : '',
@@ -55,7 +55,7 @@ class Department extends Base
                 'name'                  => isset($data['name']) ? $data['name'] : '',
                 'parentid'              => isset($data['parentid']) ? $data['parentid'] : '',
                 'order'                 => isset($data['order']) ? $data['order'] : '',
-                'id'                    => isset($data['id']) ? $data['id'] : '',
+                'id'                    => $data['id'],
                 'createDeptGroup'       => isset($data['createDeptGroup']) ? $data['createDeptGroup'] : '',
                 'autoAddUser'           => isset($data['autoAddUser']) ? $data['autoAddUser'] : '',
                 'deptManagerUseridList' => isset($data['deptManagerUseridList']) ? $data['deptManagerUseridList'] : '',
@@ -132,7 +132,7 @@ class Department extends Base
     {
         try {
             $this->options['query'] = [
-                'id'            => isset($data['id']) ? $data['id'] : '',
+                'id'            => $data['id'],
                 'fetch_child'   => isset($data['fetch_child']) ? $data['fetch_child'] : '',
                 'access_token'  => $accessToken,
                 'lang'          => $lang,
@@ -157,9 +157,9 @@ class Department extends Base
     {
         try {
             $this->options['query'] = [
-                'id'            => $id,
-                'access_token'  => $accessToken,
-                'lang'          => $lang,
+                'id'           => $id,
+                'access_token' => $accessToken,
+                'lang'         => $lang,
             ];
             $response = $this->client->request('GET', Router::GET_DEPART_INFO_URL, $this->options);
             return $response->getBody();

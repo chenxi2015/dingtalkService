@@ -88,15 +88,15 @@ class Attendance extends Base
      * @return array|false|\Psr\Http\Message\StreamInterface|string
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function getAttendanceResultList($accessToken, $data)
+    public function getAttendanceResultList($accessToken, $data, $offset = 0, $limit = 10)
     {
         try {
             $this->options['form_params'] = [
                 'workDateFrom'  => $data['workDateFrom'],
                 'workDateTo'    => $data['workDateTo'],
                 'userIdList'    => $data['userIdList'],
-                'offset'        => $data['offset'],
-                'limit'         => $data['limit'],
+                'offset'        => $offset,
+                'limit'         => $limit,
                 'isI18n'        => isset($data['isI18n']) ? $data['isI18n'] : '',
             ];
             $response = $this->client->request('POST', Router::GET_ATTENDANCE_RECORD_RESULT_URL . '?access_token=' . $accessToken, $this->options);

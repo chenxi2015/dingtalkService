@@ -113,7 +113,7 @@ class Router
     const GET_ATTENDANCE_SIMPLE_GROUP_URL =         'topapi/attendance/getsimplegroups'; // 企业考勤组详情
     const GET_ATTENDANCE_RECORD_INFO_URL =          'attendance/listRecord'; // 获取打卡详情
     const GET_ATTENDANCE_RECORD_RESULT_URL =        'attendance/list'; // 获取打开结果
-    const GET_ATTENDANCE_LEAVE_DURATION_URL =       'attendance/getleaveapproveduration'; // 获取请假时长
+    const GET_ATTENDANCE_LEAVE_DURATION_URL =       'topapi/attendance/getleaveapproveduration'; // 获取请假时长
     const GET_ATTENDANCE_LEAVE_STATUS_URL =         'topapi/attendance/getleavestatus'; // 查询请假状态
     const GET_ATTENDANCE_USER_GROUP_URL =           'topapi/attendance/getusergroup'; // 获取用户考勤组
 

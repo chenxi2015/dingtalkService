@@ -22,11 +22,11 @@ class Message extends Base
     {
         try {
             $this->options['form_params'] = [
-                'agent_id'      => isset($data['agent_id']) ? $data['agent_id'] : '',
+                'agent_id'      => $data['agent_id'],
                 'userid_list'   => isset($data['userid_list']) ? $data['userid_list'] : '',
                 'dept_id_list'  => isset($data['dept_id_list']) ? $data['dept_id_list'] : '',
                 'to_all_user'   => isset($data['to_all_user']) ? $data['to_all_user'] : '',
-                'msg'           => isset($data['msg']) ? $data['msg'] : '',
+                'msg'           => $data['msg']
             ];
             $response = $this->client->request('POST', Router::SEND_WORK_MSG_URL . '?access_token=' . $accessToken, $this->options);
             return $response->getBody();
@@ -47,8 +47,8 @@ class Message extends Base
     {
         try {
             $this->options['form_params'] = [
-                'agent_id'  => isset($data['agent_id']) ? $data['agent_id'] : '',
-                'task_id'   => isset($data['task_id']) ? $data['task_id'] : '',
+                'agent_id' => $data['agent_id'],
+                'task_id'  => $data['task_id']
             ];
             $response = $this->client->request('POST', Router::GET_WORK_MSG_PROGRESS_URL . '?access_token=' . $accessToken, $this->options);
             return $response->getBody();
@@ -135,12 +135,12 @@ class Message extends Base
     {
         try {
             $this->options['query'] = [
-                'messageId'     => isset($data['messageId']) ? $data['messageId'] : '',
-                'cursor'        => isset($data['cursor']) ? $data['cursor'] : '',
-                'size'          => isset($data['size']) ? $data['size'] : 10,
-                'access_token'  => $accessToken
+                'access_token' => $accessToken,
+                'messageId'    => $data['messageId'],
+                'cursor'       => $data['cursor'],
+                'size'         => $data['size']
             ];
-            $response = $this->client->request('GET', Router::SEND_CHAT_MSG_URL, $this->options);
+            $response = $this->client->request('GET', Router::GET_CHAT_MSG_READ_URL, $this->options);
             return $response->getBody();
 
         } catch (ClientException $e) {
@@ -148,13 +148,20 @@ class Message extends Base
         }
     }
 
+    /**
+     * 创建会话
+     * @param $accessToken
+     * @param $data
+     * @return array|false|\Psr\Http\Message\StreamInterface|string
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
     public function createChat($accessToken, $data)
     {
         try {
             $this->options['form_params'] = [
-                'name'                  => isset($data['name']) ? $data['name'] : '',
-                'owner'                 => isset($data['owner']) ? $data['owner'] : '',
-                'useridlist'            => isset($data['useridlist']) ? $data['useridlist'] : '',
+                'name'                  => $data['name'],
+                'owner'                 => $data['owner'],
+                'useridlist'            => $data['useridlist'],
                 'showHistoryType'       => isset($data['showHistoryType']) ? $data['showHistoryType'] : 0,
                 'searchable'            => isset($data['searchable']) ? $data['searchable'] : 0,
                 'validationType'        => isset($data['validationType']) ? $data['validationType'] : 0,
@@ -181,7 +188,7 @@ class Message extends Base
     {
         try {
             $this->options['form_params'] = [
-                'chatid'                => isset($data['chatid']) ? $data['chatid'] : '',
+                'chatid'                => $data['chatid'],
                 'name'                  => isset($data['name']) ? $data['name'] : '',
                 'owner'                 => isset($data['owner']) ? $data['owner'] : '',
                 'add_useridlist'        => isset($data['add_useridlist']) ? $data['add_useridlist'] : '',
