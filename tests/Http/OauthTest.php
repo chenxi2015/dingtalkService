@@ -17,6 +17,27 @@ class OauthTest extends TestCase
         $this->oauth = new Oauth();
     }
 
+    public function testGetUserId()
+    {
+        $response = $this->oauth->getUserId('7ca5a5e479b03f96a0fa4b4b6b420d67', '');
+        // echo $response;
+        $this->assertJson($response);
+    }
+
+    public function testGetSSOAccessToken()
+    {
+        $response = $this->oauth->getSSOAccessToken('7ca5a5e479b03f96a0fa4b4b6b420d67', '');
+        // echo $response;
+        $this->assertJson($response);
+    }
+
+    public function testGetSSOUserInfo()
+    {
+        $response = $this->oauth->getSSOUserInfo('7ca5a5e479b03f96a0fa4b4b6b420d67', '');
+        // echo $response;
+        $this->assertJson($response);
+    }
+
     public function testCreateAuthorizeLoginUrl()
     {
         $response = $this->oauth->createAuthorizeLoginUrl('dingoaxa4fumrexmgc8os8', 'http://www.yuanjudongli.com/callback');

@@ -107,9 +107,15 @@ class MessageTest extends TestCase
 
     public function testSendNormalMsg()
     {
-        $response = $this->message->sendNormalMsg('4a8d3d8d18eb3c509f60ed9d6ea676fd');
-        echo $response;
+        $response = $this->message->sendNormalMsg('7ca5a5e479b03f96a0fa4b4b6b420d67', [
+            'content' => 'gxheart',
+            'sender' => '1',
+            'cid' => '1'
+        ]);
+        // echo $response;
         $this->assertJson($response);
     }
+
+
 
 }

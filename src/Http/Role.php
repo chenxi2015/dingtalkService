@@ -42,7 +42,7 @@ class Role extends Base
      * @return array|false|\Psr\Http\Message\StreamInterface|string
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function getUserSimpleListByRole($accessToken, $roleId, $offset, $size)
+    public function getUserSimpleListByRole($accessToken, $roleId, $offset = 0, $size = 10)
     {
         try {
             $this->options['form_params'] = [
@@ -104,8 +104,8 @@ class Role extends Base
     {
         try {
             $this->options['form_params'] = [
-                'roleId'    => isset($data['roleId']) ? $data['roleId'] : '',
-                'roleName'  => isset($data['roleName']) ? $data['roleName'] : '',
+                'roleName'    => $data['roleName'],
+                'groupId'  => $data['groupId']
             ];
             $response = $this->client->request('POST', Router::CREATE_ROLE_URL . '?access_token=' . $accessToken, $this->options);
             return $response->getBody();
@@ -126,8 +126,8 @@ class Role extends Base
     {
         try {
             $this->options['form_params'] = [
-                'roleId'    => isset($data['roleId']) ? $data['roleId'] : '',
-                'roleName'  => isset($data['roleName']) ? $data['roleName'] : '',
+                'roleId'    => $data['roleId'],
+                'roleName'  => $data['roleName']
             ];
             $response = $this->client->request('POST', Router::UPDATE_ROLE_URL . '?access_token=' . $accessToken, $this->options);
             return $response->getBody();
@@ -190,8 +190,8 @@ class Role extends Base
     {
         try {
             $this->options['form_params'] = [
-                'roleIds' => isset($data['roleIds']) ? $data['roleIds'] : '',
-                'userIds' => isset($data['userIds']) ? $data['userIds'] : '',
+                'roleIds' => $data['roleIds'],
+                'userIds' => $data['userIds']
             ];
             $response = $this->client->request('POST', Router::CREATE_ROLE_MULTI_URL . '?access_token=' . $accessToken, $this->options);
             return $response->getBody();
@@ -212,8 +212,8 @@ class Role extends Base
     {
         try {
             $this->options['form_params'] = [
-                'roleIds' => isset($data['roleIds']) ? $data['roleIds'] : '',
-                'userIds' => isset($data['userIds']) ? $data['userIds'] : '',
+                'roleIds' => $data['roleIds'],
+                'userIds' => $data['userIds']
             ];
             $response = $this->client->request('POST', Router::DELETE_ROLE_MULTI_URL . '?access_token=' . $accessToken, $this->options);
             return $response->getBody();

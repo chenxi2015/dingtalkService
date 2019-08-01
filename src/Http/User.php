@@ -23,11 +23,11 @@ class User extends Base
         try {
             $this->options['form_params'] = [
                 'userid'        => isset($data['userid']) ? $data['userid'] : '',
-                'name'          => isset($data['name']) ? $data['name'] : '',
+                'name'          => $data['name'],
                 'orderInDepts'  => isset($data['orderInDepts']) ? $data['orderInDepts'] : '',
-                'department'    => isset($data['department']) ? $data['department'] : '',
+                'department'    => $data['department'],
                 'position'      => isset($data['position']) ? $data['department'] : '',
-                'mobile'        => isset($data['mobile']) ? $data['mobile'] : '',
+                'mobile'        => $data['mobile'],
                 'tel'           => isset($data['tel']) ? $data['mobile'] : '',
                 'workPlace'     => isset($data['workPlace']) ? $data['workPlace'] : '',
                 'remark'        => isset($data['remark']) ? $data['remark'] : '',
@@ -58,7 +58,7 @@ class User extends Base
     {
         try {
             $this->options['form_params'] = [
-                'userid'        => isset($data['userid']) ? $data['userid'] : '',
+                'userid'        => $data['userid'],
                 'name'          => isset($data['name']) ? $data['name'] : '',
                 'orderInDepts'  => isset($data['orderInDepts']) ? $data['orderInDepts'] : '',
                 'department'    => isset($data['department']) ? $data['department'] : '',
