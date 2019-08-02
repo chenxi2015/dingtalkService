@@ -20,6 +20,8 @@ php composer.phar require chenxi2015/dingtalk-service
 
 composer require chenxi2015/dingtalk-service
 ```
+## Help and docs
+[钉钉服务端API](https://ding-doc.dingtalk.com/doc#/serverapi2/gh60vz)
 
 ## Robot API
 
